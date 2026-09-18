@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediCare Sync – Clinical System & Electronic Health Records</title>
+  <meta name="description" content="MediCare Sync is an enterprise Electronic Health Records (EHR) and clinic scheduling system built for real-time doctor slotting, encrypted patient archival, and automated billing." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="nav-header">
+    <a href="#" class="logo-group">
+      <div class="logo-icon">🩺</div>
+      <div class="logo-title">MediCare<span class="gradient-text">Sync</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview">System Overview</a></li>
+      <li><a href="#doctors">Doctor Schedules</a></li>
+      <li><a href="#records">EHR Patient Vault</a></li>
+      <li><a href="#redis">Performance</a></li>
+    </ul>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <span class="badge badge-teal"><span class="status-dot"></span> EHR Server Active</span>
+      <button class="btn btn-primary btn-sm" onclick="openBookingModal()">+ Book Appointment</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="overview">
+    <div class="hero-content">
+      <span class="badge badge-cyan">🏥 Next-Gen Healthcare Information System</span>
+      <h1>Synchronized Care. <br/><span class="gradient-text">Zero Latency Records.</span></h1>
+      <p>
+        MediCare Sync bridges clinical workflows, patient scheduling, and compliant Electronic Health Records (EHR) into a unified, high-availability web platform.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openBookingModal()">🚀 Schedule Appointment</button>
+        <a href="#records" class="btn btn-secondary">🔍 Access Patient Vault</a>
+      </div>
+      <div class="hero-stats-bar">
+        <div class="stat-item">
+          <h4>&lt; 30ms</h4>
+          <p>Redis Lookup Latency</p>
+        </div>
+        <div class="stat-item">
+          <h4>100%</h4>
+          <p>HIPAA Compliance Archival</p>
+        </div>
+        <div class="stat-item">
+          <h4>12,400+</h4>
+          <p>Patient Visits Synced</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EHR Interactive Mockup Card -->
+    <div class="ehr-mockup-card">
+      <div class="mockup-header">
+        <div class="mockup-title">
+          <span class="status-dot"></span>
+          <span>Live Clinical Status Dashboard</span>
+        </div>
+        <span class="mono" style="font-size:0.75rem; color:#38bdf8;">SYNC-NODE: ID-EAST-1</span>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+          <div class="mono" style="font-size:0.7rem; color:#94a3b8;">ACTIVE DOCTORS</div>
+          <div style="font-size:1.4rem; font-weight:800; color:#2dd4bf;">14 On Duty</div>
+        </div>
+        <div style="background:rgba(30,41,59,0.7); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
+          <div class="mono" style="font-size:0.7rem; color:#94a3b8;">TODAY'S SLOTS</div>
+          <div style="font-size:1.4rem; font-weight:800; color:#38bdf8;">94% Booked</div>
+        </div>
+      </div>
+
+      <div style="background:rgba(15,23,42,0.9); padding:14px; border-radius:12px; border:1px solid rgba(13,148,136,0.3);">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
+          <span style="color:#94a3b8;">Redis In-Memory Cache Latency</span>
+          <span class="mono" style="color:#34d399; font-weight:700;" id="redisLatency">18.4 ms</span>
+        </div>
+        <div style="height:6px; background:#1e293b; border-radius:10px; overflow:hidden;">
+          <div style="width:78%; height:100%; background:linear-gradient(90deg, #0d9488, #06b6d4);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctor Availability Grid -->
+  <section class="section" id="doctors">
+    <div class="section-title-box">
+      <span class="badge badge-teal">👨‍⚕️ Real-time Availability</span>
+      <h2>Doctor Schedules &amp; Clinic Slots</h2>
+      <p>Automated slotting algorithm prevents double-booking across specialty clinics.</p>
+    </div>
+    <div class="grid-2" id="doctorGrid">
+      <!-- Injected by app.js -->
+    </div>
+  </section>
+
+  <!-- EHR Patient Records Vault -->
+  <section class="section" id="records">
+    <div class="section-title-box">
+      <span class="badge badge-cyan">🔒 Encrypted Electronic Health Records</span>
+      <h2>Patient Records Vault</h2>
+      <p>Search diagnostic histories, vital summaries, and treatment plans in real-time.</p>
+    </div>
+
+    <div style="margin-bottom:20px; max-width:400px;">
+      <input type="text" id="patientSearch" class="form-control" placeholder="🔍 Search patient by name, ID, or diagnosis..." />
+    </div>
+
+    <div class="ehr-table-wrapper">
+      <table class="ehr-table">
+        <thead>
+          <tr>
+            <th>EHR Code</th>
+            <th>Patient Name</th>
+            <th>Demographics</th>
+            <th>Diagnosis / Condition</th>
+            <th>Last Visit</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="patientTableBody">
+          <!-- Injected by app.js -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Booking Modal -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-box">
+      <button class="close-modal" onclick="closeBookingModal()">&times;</button>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+        <span style="font-size:1.5rem;">📅</span>
+        <h3 style="font-size:1.25rem; font-weight:700;">Schedule Clinical Visit</h3>
+      </div>
+      <form id="bookingForm">
+        <div class="form-group">
+          <label>Patient Full Name</label>
+          <input type="text" id="patientName" class="form-control" required placeholder="e.g. Ahmad Subagyo" />
+        </div>
+        <div class="form-group">
+          <label>Select Specialist / Doctor</label>
+          <select id="modalDoctorName" class="form-control" required>
+            <option value="Dr. Anisa Rahma, Sp.A">Dr. Anisa Rahma, Sp.A (Pediatrics)</option>
+            <option value="Dr. Budi Pratama, Sp.PD">Dr. Budi Pratama, Sp.PD (Internal Medicine)</option>
+            <option value="Dr. Hendra Wijaya, Sp.JP">Dr. Hendra Wijaya, Sp.JP (Cardiology)</option>
+          </select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="appointmentDate" class="form-control" required value="2026-09-20" />
+          </div>
+          <div class="form-group">
+            <label>Time Slot</label>
+            <select id="appointmentTime" class="form-control" required>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="04:00 PM">04:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">
+          Confirm &amp; Sync Booking
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="border-top:1px solid var(--border-color); padding:40px 24px; text-align:center; color:var(--text-subtle); font-size:0.85rem;">
+    <p>© 2026 MediCare Sync. Built by <strong style="color:#fff;">Muhamad Taufiq Akbar</strong> • Full-Stack Healthcare Architecture Demo</p>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

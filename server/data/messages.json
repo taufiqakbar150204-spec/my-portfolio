@@ -1,0 +1,26 @@
+[
+  {
+    "id": "MSG-1789585118206",
+    "name": "Taufiq Akbar",
+    "email": "taufiqakbar150204@gmail.com",
+    "subject": "Full Stack",
+    "message": "Haiiii",
+    "receivedAt": "2026-09-16T18:58:38.206Z"
+  },
+  {
+    "id": "MSG-1789584999782",
+    "name": "Taufiq Akbar",
+    "email": "taufiqakbar150204@gmail.com",
+    "subject": "Full Stack",
+    "message": "Hallo",
+    "receivedAt": "2026-09-16T18:56:39.782Z"
+  },
+  {
+    "id": "MSG-WELCOME",
+    "name": "Recruiter Tech Indonesia",
+    "email": "hrd@perusahaan-tech.com",
+    "subject": "Undangan Interview Full-Stack Developer",
+    "message": "Halo Muhamad Taufiq Akbar, kami sangat terkesan dengan portofolio full-stack Anda. Kami ingin mengundang Anda untuk sesi diskusi teknis posisi IT Programmer & Full-Stack Developer.",
+    "receivedAt": "2026-09-17T01:50:00.000Z"
+  }
+]

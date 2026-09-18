@@ -1,0 +1,22 @@
+{
+  "name": "my-portfolio-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Modern Full-Stack Developer & IT Programmer Portfolio",
+  "scripts": {
+    "client:install": "cd client && npm install",
+    "server:install": "cd server && npm install",
+    "install:all": "npm run client:install && npm run server:install",
+    "client:dev": "cd client && npm run dev",
+    "server:dev": "cd server && npm run dev"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "vite",
+    "tailwindcss",
+    "nodejs",
+    "express"
+  ],
+  "author": "Muhamad Taufiq Akbar"
+}

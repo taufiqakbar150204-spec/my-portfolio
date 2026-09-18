@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Kanban Board – FlowPulse</title>
+  <meta name="description" content="FlowPulse Kanban Board – drag and drop task management for your team." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">⚡</div>
+        <span class="sidebar-brand-name gradient-text">FlowPulse</span>
+      </div>
+      <div class="sidebar-section-label">Main Menu</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-nav-item"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="board.html" class="sidebar-nav-item active"><span class="nav-icon">📋</span> Kanban Board <span
+            class="sidebar-nav-badge">5</span></a>
+        <a href="projects.html" class="sidebar-nav-item"><span class="nav-icon">📁</span> Projects</a>
+        <a href="team.html" class="sidebar-nav-item"><span class="nav-icon">👥</span> Team</a>
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">📅</span> Calendar</a>
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">💬</span> Messages <span
+            class="sidebar-nav-badge">3</span></a>
+      </nav>
+      <div class="sidebar-section-label">Settings</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">⚙️</span> Settings</a>
+        <a href="index.html" class="sidebar-nav-item"><span class="nav-icon">🏠</span> Landing Page</a>
+        <a href="auth.html" class="sidebar-nav-item"><span class="nav-icon">🚪</span> Logout</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar">YO</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Yoga Oktavian</div>
+          <div class="sidebar-user-role">Product Manager</div>
+        </div>
+      </div>
+    </aside>
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+    <!-- Topbar -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Kanban Board</div>
+        <span class="badge badge-purple">FlowPulse Mobile App</span>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <span>🔍</span>
+          <input type="text" placeholder="Search tasks..." />
+        </div>
+        <button class="btn btn-primary btn-sm" data-open-modal="addTaskModal">+ Add Task</button>
+        <div class="notification-btn">
+          <button class="btn-icon">🔔</button>
+          <div class="notification-dot"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="app-main">
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <span style="font-size:13px;color:var(--text-secondary);font-weight:500">Filter:</span>
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">My Tasks</button>
+        <button class="filter-chip">High Priority</button>
+        <button class="filter-chip">Due Today</button>
+        <button class="filter-chip">Overdue</button>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <div class="avatar-group" style="align-items:center">
+            <div class="avatar avatar-sm" title="Yoga">YO</div>
+            <div class="avatar avatar-sm bg-green" title="Rina">RD</div>
+            <div class="avatar avatar-sm bg-pink" title="Budi">BS</div>
+            <div class="avatar avatar-sm bg-blue" title="Sari">SA</div>
+            <div class="avatar avatar-sm bg-orange" title="Dito">DP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kanban Board -->
+      <div class="kanban-board">
+
+        <!-- To Do -->
+        <div class="kanban-col" id="todo">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title">
+              <div class="kanban-col-dot" style="background:#8892b0"></div>
+              To Do
+            </div>
+            <div class="kanban-count" style="background:rgba(136,146,176,0.15);color:#8892b0">4</div>
+          </div>
+          <div class="kanban-cards" id="todo-cards">
+            <div class="task-card priority-high">
+              <div class="task-title">User Research Interview</div>
+              <div class="task-desc">Interview 5 target users about pain points in current workflow</div>
+              <div class="task-tags"><span class="task-tag">Research</span><span class="task-tag">UX</span></div>
+              <div class="task-meta">
+                <span class="badge badge-red">High</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar avatar-sm bg-blue">SA</div>
+                  <span class="task-due">📅 Sep 20</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-card priority-medium">
+              <div class="task-title">Onboarding Flow Design</div>
+              <div class="task-desc">Design the 4-step onboarding experience for new users</div>
+              <div class="task-tags"><span class="task-tag">Design</span></div>
+              <div class="task-meta">
+                <span class="badge badge-orange">Medium</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar avatar-sm bg-pink">RD</div>
+                  <span class="task-due">📅 Sep 22</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-card priority-low">
+              <div class="task-title">Update README Documentation</div>
+              <div class="task-tags"><span class="task-tag">Docs</span></div>
+              <div class="task-meta">
+                <span class="badge badge-green">Low</span>
+                <div class="avatar avatar-sm bg-orange">DP</div>
+              </div>
+            </div>
+            <div class="task-card priority-medium">
+              <div class="task-title">Sprint Retrospective Prep</div>
+              <div class="task-desc">Prepare agenda and slides for the sprint retro meeting</div>
+              <div class="task-meta">
+                <span class="badge badge-orange">Medium</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar avatar-sm">YO</div>
+                  <span class="task-due">📅 Sep 25</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="kanban-add-btn" data-open-modal="addTaskModal">+ Add Task</button>
+        </div>
+
+        <!-- In Progress -->
+        <div class="kanban-col" id="inprogress">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title">
+              <div class="kanban-col-dot" style="background:#ffb347"></div>
+              In Progress
+            </div>
+            <div class="kanban-count" style="background:rgba(255,179,71,0.15);color:#ffb347">3</div>
+          </div>
+          <div class="kanban-cards" id="inprogress-cards">
+            <div class="task-card priority-high">
+              <div class="task-title">UI Redesign – Homepage</div>
+              <div class="task-desc">Complete redesign of homepage with new design system components</div>
+              <div class="task-tags"><span class="task-tag">Design</span><span class="task-tag">Frontend</span></div>
+              <div class="task-meta">
+                <span class="badge badge-red">High</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar-group">
+                    <div class="avatar avatar-sm">YO</div>
+                    <div class="avatar avatar-sm bg-green">RD</div>
+                  </div>
+                  <span class="task-due">📅 Sep 19</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-card priority-high">
+              <div class="task-title">Backend API Integration</div>
+              <div class="task-desc">Integrate REST API endpoints with the mobile app frontend</div>
+              <div class="task-tags"><span class="task-tag">Backend</span><span class="task-tag">API</span></div>
+              <div class="task-meta">
+                <span class="badge badge-red">High</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar avatar-sm bg-teal">BP</div>
+                  <span class="task-due" style="color:var(--accent-danger)">📅 Sep 17 ⚠️</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-card priority-medium">
+              <div class="task-title">Write Unit Tests</div>
+              <div class="task-desc">Add test coverage for authentication and profile modules</div>
+              <div class="task-tags"><span class="task-tag">Testing</span></div>
+              <div class="task-meta">
+                <span class="badge badge-orange">Medium</span>
+                <div class="avatar avatar-sm bg-blue">DH</div>
+              </div>
+            </div>
+          </div>
+          <button class="kanban-add-btn" data-open-modal="addTaskModal">+ Add Task</button>
+        </div>
+
+        <!-- Review -->
+        <div class="kanban-col" id="review">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title">
+              <div class="kanban-col-dot" style="background:#4db8ff"></div>
+              Review
+            </div>
+            <div class="kanban-count" style="background:rgba(77,184,255,0.15);color:#4db8ff">2</div>
+          </div>
+          <div class="kanban-cards" id="review-cards">
+            <div class="task-card priority-medium">
+              <div class="task-title">Mobile App Prototype</div>
+              <div class="task-desc">Review and approve the Figma prototype before dev handoff</div>
+              <div class="task-tags"><span class="task-tag">Design</span><span class="task-tag">Review</span></div>
+              <div class="task-meta">
+                <span class="badge badge-orange">Medium</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <div class="avatar avatar-sm bg-pink">SA</div>
+                  <span class="task-due">📅 Sep 18</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-card priority-low">
+              <div class="task-title">Accessibility Audit</div>
+              <div class="task-desc">Run WCAG 2.1 AA compliance check on all screens</div>
+              <div class="task-tags"><span class="task-tag">A11y</span></div>
+              <div class="task-meta">
+                <span class="badge badge-green">Low</span>
+                <div class="avatar avatar-sm bg-orange">DP</div>
+              </div>
+            </div>
+          </div>
+          <button class="kanban-add-btn" data-open-modal="addTaskModal">+ Add Task</button>
+        </div>
+
+        <!-- Done -->
+        <div class="kanban-col" id="done">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title">
+              <div class="kanban-col-dot" style="background:#00d4aa"></div>
+              Done
+            </div>
+            <div class="kanban-count" style="background:rgba(0,212,170,0.15);color:#00d4aa">3</div>
+          </div>
+          <div class="kanban-cards" id="done-cards">
+            <div class="task-card priority-high" style="opacity:0.8">
+              <div class="task-title">Setup CI/CD Pipeline</div>
+              <div class="task-tags"><span class="task-tag">DevOps</span></div>
+              <div class="task-meta">
+                <span class="badge badge-green">Done</span>
+                <div class="avatar avatar-sm bg-teal">BP</div>
+              </div>
+            </div>
+            <div class="task-card priority-medium" style="opacity:0.8">
+              <div class="task-title">Design System Components</div>
+              <div class="task-desc">Build atomic component library in Figma</div>
+              <div class="task-tags"><span class="task-tag">Design</span></div>
+              <div class="task-meta">
+                <span class="badge badge-green">Done</span>
+                <div class="avatar avatar-sm bg-green">RD</div>
+              </div>
+            </div>
+            <div class="task-card priority-low" style="opacity:0.8">
+              <div class="task-title">Project Kickoff Meeting</div>
+              <div class="task-meta">
+                <span class="badge badge-green">Done</span>
+                <div class="avatar avatar-sm">YO</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Task Modal -->
+  <div class="modal-overlay" id="addTaskModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">➕ Add New Task</div>
+        <button class="modal-close" data-close-modal="addTaskModal">✕</button>
+      </div>
+      <form class="modal-body" id="addTaskForm">
+        <div class="form-group">
+          <label class="form-label">Task Title *</label>
+          <input id="taskTitle" type="text" class="form-control" placeholder="Enter task title..." required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea id="taskDesc" class="form-control" rows="3" placeholder="Optional task description..."></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div class="form-group">
+            <label class="form-label">Priority</label>
+            <select id="taskPriority" class="form-control">
+              <option value="high">🔴 High</option>
+              <option value="medium" selected>🟡 Medium</option>
+              <option value="low">🟢 Low</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Column</label>
+            <select id="taskColumn" class="form-control">
+              <option value="todo">To Do</option>
+              <option value="inprogress">In Progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Due Date</label>
+          <input id="taskDue" type="date" class="form-control" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close-modal="addTaskModal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+  <script>
+    document.getElementById('sidebarToggle')?.addEventListener('click', () => {
+      document.getElementById('sidebar')?.classList.toggle('open');
+    });
+  </script>
+</body>
+
+</html>

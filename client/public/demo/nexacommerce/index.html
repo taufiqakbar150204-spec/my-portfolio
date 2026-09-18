@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexaCommerce - Modern Tech Gadgets &amp; Developer Gear</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2'><path d='M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z'></path><line x1='3' y1='6' x2='21' y2='6'></line><path d='M16 10a4 4 0 0 1-8 0'></path></svg>">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            darkBg: '#090d16',
+            cardBg: '#101626',
+            cardBorder: '#1e293d',
+            emeraldAccent: '#10b981',
+            cyanAccent: '#06b6d4',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #090d16;
+      color: #f1f5f9;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d16;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-emerald-500/30 selection:text-emerald-300">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-slate-950 px-4 py-2 text-xs font-bold flex items-center justify-between shadow-md">
+    <div class="max-w-7xl mx-auto w-full flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="px-2 py-0.5 rounded-full bg-slate-950 text-emerald-400 text-[10px] uppercase tracking-wider">Promo Spesial</span>
+        <span>Gunakan kode kupon <span class="bg-slate-950/20 px-1.5 py-0.5 rounded font-mono text-slate-950">PROMOHEMAT</span> untuk diskon 20%!</span>
+      </div>
+      <div class="hidden md:flex items-center gap-4 text-[11px]">
+        <span>⚡ Gratis Ongkir Se-Indonesia</span>
+        <span>•</span>
+        <span>🛡️ 100% Garansi Resmi Distributor</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#090d16]/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- Logo & Brand -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="flex items-center gap-2.5 group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-500 flex items-center justify-center text-slate-950 font-extrabold shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            </div>
+            <div>
+              <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">NexaCommerce</span>
+              <span class="block text-[10px] font-mono text-emerald-400 font-semibold tracking-wider -mt-1">TECH &amp; GADGET STORE</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Live Search Bar -->
+        <div class="hidden md:flex flex-1 max-w-md mx-4">
+          <div class="relative w-full">
+            <input 
+              type="text" 
+              id="searchInput" 
+              oninput="handleSearch()" 
+              placeholder="Cari MacBook, iPhone, Audio, Keyboard..." 
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+            >
+            <div class="absolute left-3.5 top-3 text-slate-500">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Controls (Back to Portfolio & Cart) -->
+        <div class="flex items-center gap-3">
+          <!-- Back to Portfolio Link -->
+          <a 
+            href="../../#projects" 
+            class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white transition-all"
+            title="Kembali ke Halaman Portofolio Utama"
+          >
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+            <span>Portofolio</span>
+          </a>
+
+          <!-- Cart Button with Counter -->
+          <button 
+            onclick="toggleCart(true)" 
+            class="relative p-2.5 sm:px-4 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:scale-105 transition-all"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span class="hidden sm:inline">Keranjang</span>
+            <span id="cartBadge" class="w-5 h-5 rounded-full bg-slate-950 text-emerald-400 text-xs font-mono font-extrabold flex items-center justify-center">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search Bar -->
+      <div class="pb-3 md:hidden">
+        <div class="relative w-full">
+          <input 
+            type="text" 
+            id="mobileSearchInput" 
+            oninput="handleMobileSearch()" 
+            placeholder="Cari produk gadget..." 
+            class="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+          >
+          <div class="absolute left-3.5 top-2.5 text-slate-500">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Promotional Banner -->
+  <section class="relative overflow-hidden py-12 lg:py-16 bg-[#0c1220] border-b border-slate-800">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
+            <span>🚀 LIVE INTERACTIVE STOREFRONT DEMO</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            Perangkat Kerja &amp; Gadget Idaman{' '}
+            <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+              Para Profesional
+            </span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Koleksi laptop high-performance, peripheral koding, dan audio premium dengan proses transaksi aman serta pengiriman langsung di hari yang sama.
+          </p>
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+            <a href="#productsSection" class="px-5 py-3 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:from-emerald-300 hover:to-cyan-300 transition-all shadow-md shadow-emerald-500/20">
+              Mulai Belanja Sekarang &darr;
+            </a>
+            <div class="flex items-center gap-2 text-xs font-mono text-slate-400 bg-slate-900/80 px-4 py-3 rounded-xl border border-slate-800">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Atomic Inventory Sync Active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini Feature Highlights -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h4 class="font-bold text-sm text-white">Garansi 100% Resmi</h4>
+            <p class="text-xs text-slate-400 mt-1">Klaim garansi mudah dan unit pengganti baru.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+            <div class="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center mb-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h4 class="font-bold text-sm text-white">Multi Payment Gateway</h4>
+            <p class="text-xs text-slate-400 mt-1">Dukung QRIS, VA Bank &amp; Kartu Kredit.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+            <div class="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center mb-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h4 class="font-bold text-sm text-white">Pengiriman Instan</h4>
+            <p class="text-xs text-slate-400 mt-1">Dikirim dalam 2 jam melalui kurir khusus.</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+            <div class="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mb-2.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/></svg>
+            </div>
+            <h4 class="font-bold text-sm text-white">Optimistic UI</h4>
+            <p class="text-xs text-slate-400 mt-1">Responsivitas instan tanpa loading screen lama.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Catalog Section -->
+  <main id="productsSection" class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    <!-- Category Filter Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+      <div>
+        <h2 class="text-2xl font-bold text-white tracking-tight">Katalog Produk Pilihan</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Semua produk siap dikirim dengan jaminan stok langsung dari gudang pusat.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2" id="categoryButtons">
+        <!-- Generated dynamically via JS -->
+      </div>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- Empty Search State -->
+    <div id="emptySearch" class="hidden text-center py-16">
+      <div class="w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center mx-auto text-slate-500 mb-3 border border-slate-800">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </div>
+      <h3 class="text-lg font-bold text-white">Produk tidak ditemukan</h3>
+      <p class="text-sm text-slate-400 mt-1">Coba gunakan kata kunci lain seperti "MacBook", "Keyboard", atau "Sony".</p>
+      <button onclick="resetFilter()" class="mt-4 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-emerald-400">
+        Reset Pencarian
+      </button>
+    </div>
+  </main>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity" onclick="toggleCart(false)"></div>
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-[#0e1424] border-l border-slate-800 text-slate-100 flex flex-col shadow-2xl">
+        <!-- Cart Header -->
+        <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            </div>
+            <h3 class="text-lg font-bold text-white">Keranjang Belanja</h3>
+            <span id="cartItemCountLabel" class="text-xs font-mono px-2 py-0.5 rounded-full bg-slate-800 text-emerald-400 border border-slate-700">0 item</span>
+          </div>
+          <button onclick="toggleCart(false)" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Cart Items List Container -->
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-6 space-y-4">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Cart Summary & Voucher -->
+        <div class="p-6 border-t border-slate-800 bg-slate-950/60 space-y-4">
+          <!-- Voucher Code Input -->
+          <div>
+            <div class="flex gap-2">
+              <input 
+                type="text" 
+                id="voucherInput" 
+                placeholder="Kode Promo (coba: PROMOHEMAT)" 
+                class="flex-1 px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-xs text-white placeholder-slate-500 uppercase font-mono focus:outline-none focus:border-emerald-500"
+              >
+              <button 
+                onclick="applyVoucher()" 
+                class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-emerald-400 transition-colors"
+              >
+                Pakai
+              </button>
+            </div>
+            <div id="voucherFeedback" class="text-[11px] font-mono mt-1 hidden"></div>
+          </div>
+
+          <!-- Price Calculations -->
+          <div class="space-y-1.5 text-xs text-slate-400 pt-2 border-t border-slate-800/80">
+            <div class="flex justify-between">
+              <span>Subtotal Produk</span>
+              <span id="summarySubtotal" class="font-mono text-slate-200">Rp 0</span>
+            </div>
+            <div class="flex justify-between" id="discountRow" style="display: none;">
+              <span class="text-emerald-400">Diskon Kupon (20%)</span>
+              <span id="summaryDiscount" class="font-mono text-emerald-400">-Rp 0</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Estimasi Ongkos Kirim</span>
+              <span id="summaryShipping" class="font-mono text-slate-200">GRATIS</span>
+            </div>
+            <div class="flex justify-between text-sm font-bold text-white pt-2 border-t border-slate-800">
+              <span>Total Pembayaran</span>
+              <span id="summaryGrandTotal" class="font-mono text-emerald-400 text-base">Rp 0</span>
+            </div>
+          </div>
+
+          <!-- Checkout Button -->
+          <button 
+            id="checkoutBtn" 
+            onclick="openCheckoutModal()" 
+            class="w-full py-3.5 px-4 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:from-emerald-300 hover:to-cyan-300 transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span>Lanjut ke Pembayaran</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout & Payment Simulation Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen px-4 py-8">
+      <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeCheckoutModal()"></div>
+      <div class="relative bg-[#0f172a] border border-slate-800 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl text-slate-100 z-10">
+        
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Simulasi Checkout &amp; Bayar</h3>
+          </div>
+          <button onclick="closeCheckoutModal()" class="text-slate-400 hover:text-white">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Checkout Form Steps -->
+        <form id="paymentForm" onsubmit="handleProcessPayment(event)" class="space-y-4">
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Nama Penerima</label>
+            <input type="text" id="custName" required value="Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Nomor WhatsApp</label>
+              <input type="text" id="custPhone" required value="081234567890" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500">
+            </div>
+            <div>
+              <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Ekspedisi Kurir</label>
+              <select id="custCourier" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500">
+                <option value="JNE">JNE Express (Next Day)</option>
+                <option value="SiCepat">SiCepat Gokil</option>
+                <option value="GoSend">GoSend Instant (2 Jam)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase mb-1">Alamat Pengiriman</label>
+            <textarea id="custAddress" rows="2" required class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-800 text-sm text-white focus:outline-none focus:border-emerald-500">Jl. Sudirman No. 45, Jakarta Selatan</textarea>
+          </div>
+
+          <!-- Payment Gateway Selection -->
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase mb-2">Metode Pembayaran (Payment Gateway)</label>
+            <div class="grid grid-cols-3 gap-2">
+              <label class="cursor-pointer border border-emerald-500/40 bg-slate-900 p-3 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-850">
+                <input type="radio" name="payMethod" value="QRIS" checked class="text-emerald-500 mb-1">
+                <span class="font-bold text-xs text-white">QRIS Instan</span>
+                <span class="text-[10px] text-slate-400">GoPay, OVO, Dana</span>
+              </label>
+
+              <label class="cursor-pointer border border-slate-800 bg-slate-900 p-3 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-850">
+                <input type="radio" name="payMethod" value="VA" class="text-emerald-500 mb-1">
+                <span class="font-bold text-xs text-white">Virtual Account</span>
+                <span class="text-[10px] text-slate-400">BCA / Mandiri</span>
+              </label>
+
+              <label class="cursor-pointer border border-slate-800 bg-slate-900 p-3 rounded-xl flex flex-col items-center justify-center text-center hover:bg-slate-850">
+                <input type="radio" name="payMethod" value="CC" class="text-emerald-500 mb-1">
+                <span class="font-bold text-xs text-white">Kartu Kredit</span>
+                <span class="text-[10px] text-slate-400">Visa / Mastercard</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Total To Pay -->
+          <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+            <span class="text-xs text-slate-400">Total Yang Harus Dibayar:</span>
+            <span id="modalGrandTotal" class="text-lg font-bold font-mono text-emerald-400">Rp 0</span>
+          </div>
+
+          <!-- Submit Payment -->
+          <button 
+            type="submit" 
+            class="w-full py-3.5 px-4 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 hover:from-emerald-300 hover:to-cyan-300 transition-all flex items-center justify-center gap-2"
+          >
+            <span>Lanjutkan Pembayaran QRIS / VA</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </button>
+        </form>
+
+        <!-- QRIS Simulation View (Hidden Initially) -->
+        <div id="qrisView" class="hidden text-center space-y-4 pt-2">
+          <div class="p-4 rounded-xl bg-white text-slate-950 max-w-xs mx-auto shadow-xl">
+            <div class="text-xs font-bold font-mono tracking-widest text-slate-500 mb-2">QRIS STANDAR NASIONAL</div>
+            <!-- Dynamic QR Code SVG Mockup -->
+            <div class="aspect-square bg-slate-100 rounded-lg flex flex-col items-center justify-center p-4 border border-slate-300">
+              <svg class="w-44 h-44 text-slate-900" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm10-2h8v8h-8V2zm2 2v4h4V4h-4zM2 14h8v8H2v-8zm2 2v4h4v-4H4zm14 0h2v2h-2v-2zm-4 0h2v2h-2v-2zm4 4h2v2h-2v-2zm-4 0h2v2h-2v-2zm2-2h2v2h-2v-2zM5 5h2v2H5V5zm12 0h2v2h-2V5zM5 17h2v2H5v-2z"/>
+              </svg>
+            </div>
+            <div class="mt-2 text-xs font-bold text-slate-800">NEXACOMMERCE PAY</div>
+            <div class="text-[10px] text-slate-500">NMID: ID1020304050607</div>
+          </div>
+
+          <div class="text-xs text-slate-300">
+            Sisa Waktu Pembayaran: <span id="qrisTimer" class="font-mono text-emerald-400 font-bold">14:59</span>
+          </div>
+
+          <button 
+            onclick="completeSimulationPayment()" 
+            class="w-full py-3.5 px-4 rounded-xl font-bold text-sm bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
+          >
+            <span>Simulasikan Pembayaran Berhasil ✅</span>
+          </button>
+        </div>
+
+        <!-- Success Receipt View -->
+        <div id="receiptView" class="hidden text-center space-y-4 pt-2">
+          <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="text-xl font-extrabold text-white">Transaksi Berhasil!</h3>
+          <p class="text-xs text-slate-400">Pembayaran terverifikasi otomatis via Webhook (Atomic Inventory Locked).</p>
+          
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-left text-xs font-mono space-y-1.5 text-slate-300">
+            <div class="flex justify-between"><span>Nomor Pesanan:</span><span id="receiptOrderId" class="text-emerald-400 font-bold">NEXA-9281</span></div>
+            <div class="flex justify-between"><span>Penerima:</span><span id="receiptCustName">Budi Santoso</span></div>
+            <div class="flex justify-between"><span>Status Pembayaran:</span><span class="text-emerald-400 font-bold">LUNAS (PAID)</span></div>
+            <div class="flex justify-between"><span>Total Dibayar:</span><span id="receiptTotal" class="font-bold text-white">Rp 0</span></div>
+          </div>
+
+          <div class="flex gap-2">
+            <button onclick="resetApp()" class="flex-1 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200">
+              Belanja Lagi
+            </button>
+            <a href="../../#projects" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 text-xs font-bold text-center flex items-center justify-center">
+              Kembali ke Portofolio
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 border border-emerald-500/50 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300">
+    <div class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <span id="toastMessage" class="text-xs sm:text-sm font-medium">Item berhasil ditambahkan!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#060a12] border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>&copy; 2026 NexaCommerce. Proyek Portofolio Full-Stack Developer &amp; IT Programmer.</p>
+      <div class="flex justify-center gap-4 text-slate-400">
+        <a href="../../#projects" class="hover:text-emerald-400 transition-colors">&larr; Kembali ke Web Portofolio</a>
+        <span>•</span>
+        <span>Arsitektur: React, Tailwind, Express &amp; PostgreSQL Atomic Locking</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- App Data & Logic -->
+  <script>
+    // Product Catalog Database
+    const products = [
+      {
+        id: 1,
+        name: "MacBook Pro 16\" M3 Max",
+        category: "Laptops",
+        price: 42999000,
+        originalPrice: 46999000,
+        rating: 5.0,
+        reviews: 94,
+        stock: 8,
+        badge: "Best Seller",
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=800&auto=format&fit=crop",
+        description: "16-Core CPU, 40-Core GPU, 36GB Unified Memory, 1TB SSD. Performa workstation untuk software engineer."
+      },
+      {
+        id: 2,
+        name: "Sony WH-1000XM5 Wireless Headphone",
+        category: "Audio",
+        price: 5299000,
+        originalPrice: 5999000,
+        rating: 4.9,
+        reviews: 215,
+        stock: 14,
+        badge: "Hemat 12%",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop",
+        description: "Industry-leading Active Noise Cancellation (ANC), audio resolusi tinggi, daya tahan baterai 30 jam."
+      },
+      {
+        id: 3,
+        name: "iPhone 16 Pro Max 256GB Titanium",
+        category: "Gadgets",
+        price: 23499000,
+        originalPrice: 24999000,
+        rating: 4.9,
+        reviews: 168,
+        stock: 10,
+        badge: "Terbaru",
+        image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?q=80&w=800&auto=format&fit=crop",
+        description: "Chip A18 Pro, kamera fusion 48MP dengan optical zoom 5x, baterai tahan seharian penuh."
+      },
+      {
+        id: 4,
+        name: "Keychron Q1 Pro Custom Wireless Keyboard",
+        category: "Accessories",
+        price: 3150000,
+        originalPrice: 3500000,
+        rating: 4.8,
+        reviews: 77,
+        stock: 18,
+        badge: "Pilihan Dev",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=800&auto=format&fit=crop",
+        description: "CNC Aluminum Body, Hot-swappable switches, QMK/VIA programmable, Bluetooth 5.1 & Type-C."
+      },
+      {
+        id: 5,
+        name: "Dell UltraSharp 32\" 4K IPS Monitor",
+        category: "Laptops",
+        price: 14800000,
+        originalPrice: 16500000,
+        rating: 4.9,
+        reviews: 43,
+        stock: 5,
+        badge: "Stok Terbatas",
+        image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=800&auto=format&fit=crop",
+        description: "Panel 4K UHD IPS Black, 98% DCI-P3, USB-C 90W power delivery, perfect untuk coding dual-monitor."
+      },
+      {
+        id: 6,
+        name: "Logitech MX Master 3S Wireless Mouse",
+        category: "Accessories",
+        price: 1690000,
+        originalPrice: 1950000,
+        rating: 5.0,
+        reviews: 312,
+        stock: 22,
+        badge: "Populer",
+        image: "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=800&auto=format&fit=crop",
+        description: "Sensor optik 8K DPI presisi pada kaca, klik super senyap, MagSpeed scrolling elektromaknetik."
+      },
+      {
+        id: 7,
+        name: "Apple iPad Pro 13\" M4 OLED",
+        category: "Gadgets",
+        price: 21999000,
+        originalPrice: 23500000,
+        rating: 4.9,
+        reviews: 58,
+        stock: 7,
+        badge: "M4 Ultra",
+        image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=800&auto=format&fit=crop",
+        description: "Layar Ultra Retina XDR OLED tandem tertipis di dunia, performa chip M4 dengan arsitektur GPU terkini."
+      },
+      {
+        id: 8,
+        name: "Bose QuietComfort Ultra Earbuds",
+        category: "Audio",
+        price: 4199000,
+        originalPrice: 4699000,
+        rating: 4.8,
+        reviews: 89,
+        stock: 12,
+        badge: "Audio Spatial",
+        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop",
+        description: "Teknologi Immersive Audio spatial sound, ANC kelas dunia, CustomTune sound calibration."
+      }
+    ];
+
+    // State Variables
+    let cart = [];
+    let activeCategory = 'Semua';
+    let discountRate = 0; // 0.20 when coupon active
+
+    // Format Rupiah
+    function formatRupiah(number) {
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        maximumFractionDigits: 0
+      }).format(number);
+    }
+
+    // Render Categories Filter Buttons
+    function renderCategories() {
+      const categories = ['Semua', 'Laptops', 'Gadgets', 'Audio', 'Accessories'];
+      const container = document.getElementById('categoryButtons');
+      container.innerHTML = categories.map(cat => `
+        <button 
+          onclick="filterCategory('${cat}')" 
+          class="px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            activeCategory === cat 
+              ? 'bg-emerald-500 text-slate-950 shadow-md shadow-emerald-500/25' 
+              : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+          }"
+        >
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    // Filter by Category
+    function filterCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    // Search Handlers
+    function handleSearch() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      renderProducts(query);
+    }
+    function handleMobileSearch() {
+      const query = document.getElementById('mobileSearchInput').value.toLowerCase();
+      renderProducts(query);
+    }
+    function resetFilter() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('mobileSearchInput').value = '';
+      activeCategory = 'Semua';
+      renderCategories();
+      renderProducts();
+    }
+
+    // Render Product Cards
+    function renderProducts(searchQuery = '') {
+      const grid = document.getElementById('productGrid');
+      const emptySearch = document.getElementById('emptySearch');
+
+      const filtered = products.filter(item => {
+        const matchesCategory = activeCategory === 'Semua' || item.category === activeCategory;
+        const matchesSearch = searchQuery === '' || 
+          item.name.toLowerCase().includes(searchQuery) || 
+          item.description.toLowerCase().includes(searchQuery) ||
+          item.category.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptySearch.classList.remove('hidden');
+        return;
+      }
+
+      emptySearch.classList.add('hidden');
+      grid.innerHTML = filtered.map(product => `
+        <div class="group rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all duration-300 overflow-hidden flex flex-col justify-between hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/5">
+          <div>
+            <!-- Image Frame -->
+            <div class="relative aspect-video w-full overflow-hidden bg-slate-950">
+              <span class="absolute top-2.5 left-2.5 z-10 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-slate-950/80 text-emerald-400 border border-emerald-500/30 backdrop-blur-md">
+                ${product.badge}
+              </span>
+              <img 
+                src="${product.image}" 
+                alt="${product.name}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              >
+            </div>
+
+            <!-- Card Content -->
+            <div class="p-4 sm:p-5 space-y-2">
+              <div class="flex items-center justify-between text-xs text-slate-400">
+                <span class="font-mono text-emerald-400 font-semibold">${product.category}</span>
+                <span class="flex items-center gap-1 text-amber-400 font-mono">
+                  ★ ${product.rating} <span class="text-slate-500 text-[10px]">(${product.reviews})</span>
+                </span>
+              </div>
+
+              <h3 class="font-bold text-sm sm:text-base text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                ${product.name}
+              </h3>
+
+              <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                ${product.description}
+              </p>
+            </div>
+          </div>
+
+          <!-- Price & Add to Cart -->
+          <div class="p-4 sm:p-5 pt-0 border-t border-slate-800/60 mt-2">
+            <div class="flex items-baseline justify-between mb-3">
+              <div>
+                <span class="block text-[10px] line-through text-slate-500 font-mono">${formatRupiah(product.originalPrice)}</span>
+                <span class="text-sm sm:text-base font-extrabold font-mono text-white">${formatRupiah(product.price)}</span>
+              </div>
+              <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                Tersedia ${product.stock}
+              </span>
+            </div>
+
+            <button 
+              onclick="addToCart(${product.id})" 
+              class="w-full py-2.5 px-3 rounded-xl font-bold text-xs bg-slate-800 hover:bg-gradient-to-r hover:from-emerald-400 hover:to-cyan-400 text-slate-200 hover:text-slate-950 transition-all flex items-center justify-center gap-1.5 border border-slate-700 hover:border-transparent group-hover:border-slate-600"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+              <span>Tambah ke Keranjang</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Add to Cart
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item => item.id === productId);
+
+      if (existing) {
+        if (existing.qty < product.stock) {
+          existing.qty += 1;
+        } else {
+          showToast(`Batas stok tercapai (${product.stock} unit)`);
+          return;
+        }
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      updateCartUI();
+      showToast(`"${product.name}" ditambahkan ke keranjang!`);
+    }
+
+    // Modify Qty
+    function updateQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      updateCartUI();
+    }
+
+    // Remove Item from Cart
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      updateCartUI();
+      showToast("Item dihapus dari keranjang.");
+    }
+
+    // Update Cart UI, Totals, Badge
+    function updateCartUI() {
+      const badge = document.getElementById('cartBadge');
+      const container = document.getElementById('cartItemsContainer');
+      const countLabel = document.getElementById('cartItemCountLabel');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+      badge.innerText = totalItems;
+      countLabel.innerText = `${totalItems} item`;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 text-slate-500 space-y-3">
+            <div class="w-12 h-12 rounded-full bg-slate-900 flex items-center justify-center mx-auto text-slate-600 border border-slate-800">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            </div>
+            <p class="text-sm font-medium">Keranjang belanja Anda masih kosong.</p>
+            <button onclick="toggleCart(false)" class="text-xs text-emerald-400 hover:underline">Lihat Katalog Produk &rarr;</button>
+          </div>
+        `;
+        checkoutBtn.disabled = true;
+      } else {
+        checkoutBtn.disabled = false;
+        container.innerHTML = cart.map(item => `
+          <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-3">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover bg-slate-950 flex-shrink-0">
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-white truncate">${item.name}</h4>
+              <div class="text-xs font-mono text-emerald-400 font-semibold mt-0.5">${formatRupiah(item.price)}</div>
+              
+              <!-- Quantity Selector -->
+              <div class="flex items-center gap-2 mt-2">
+                <button onclick="updateQty(${item.id}, -1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center justify-center">-</button>
+                <span class="text-xs font-mono font-bold text-white px-2">${item.qty}</span>
+                <button onclick="updateQty(${item.id}, 1)" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold flex items-center justify-center">+</button>
+                <button onclick="removeFromCart(${item.id})" class="text-slate-500 hover:text-rose-400 ml-auto text-xs p-1" title="Hapus">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Calculations
+      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const discount = subtotal * discountRate;
+      const grandTotal = Math.max(0, subtotal - discount);
+
+      document.getElementById('summarySubtotal').innerText = formatRupiah(subtotal);
+      document.getElementById('summaryDiscount').innerText = `-${formatRupiah(discount)}`;
+      document.getElementById('summaryGrandTotal').innerText = formatRupiah(grandTotal);
+
+      const discountRow = document.getElementById('discountRow');
+      if (discountRate > 0) {
+        discountRow.style.display = 'flex';
+      } else {
+        discountRow.style.display = 'none';
+      }
+    }
+
+    // Toggle Cart Drawer
+    function toggleCart(show) {
+      const drawer = document.getElementById('cartDrawer');
+      if (show) {
+        drawer.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+      }
+    }
+
+    // Apply Coupon Code
+    function applyVoucher() {
+      const code = document.getElementById('voucherInput').value.trim().toUpperCase();
+      const feedback = document.getElementById('voucherFeedback');
+
+      if (code === 'PROMOHEMAT' || code === 'FULLSTACKDEV') {
+        discountRate = 0.20;
+        feedback.innerText = "✅ Kupon Aktif: Diskon 20% berhasil diterapkan!";
+        feedback.className = "text-[11px] font-mono mt-1 text-emerald-400 block";
+        updateCartUI();
+        showToast("Diskon 20% Berhasil Diterapkan!");
+      } else if (!code) {
+        feedback.innerText = "Masukkan kode voucher.";
+        feedback.className = "text-[11px] font-mono mt-1 text-rose-400 block";
+      } else {
+        feedback.innerText = "❌ Kupon tidak valid. Gunakan: PROMOHEMAT";
+        feedback.className = "text-[11px] font-mono mt-1 text-rose-400 block";
+      }
+    }
+
+    // Open Checkout Modal
+    function openCheckoutModal() {
+      if (cart.length === 0) return;
+      toggleCart(false);
+      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const grandTotal = Math.max(0, subtotal - (subtotal * discountRate));
+      document.getElementById('modalGrandTotal').innerText = formatRupiah(grandTotal);
+      
+      document.getElementById('paymentForm').classList.remove('hidden');
+      document.getElementById('qrisView').classList.add('hidden');
+      document.getElementById('receiptView').classList.add('hidden');
+
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    // Process Payment Form
+    function handleProcessPayment(e) {
+      e.preventDefault();
+      document.getElementById('paymentForm').classList.add('hidden');
+      document.getElementById('qrisView').classList.remove('hidden');
+
+      // Start Countdown Timer
+      let seconds = 899;
+      const timerElem = document.getElementById('qrisTimer');
+      const timerInterval = setInterval(() => {
+        seconds--;
+        if (seconds <= 0) {
+          clearInterval(timerInterval);
+        }
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        timerElem.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+      }, 1000);
+    }
+
+    // Complete Simulation
+    function completeSimulationPayment() {
+      document.getElementById('qrisView').classList.add('hidden');
+      document.getElementById('receiptView').classList.remove('hidden');
+
+      const name = document.getElementById('custName').value;
+      const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+      const grandTotal = Math.max(0, subtotal - (subtotal * discountRate));
+
+      document.getElementById('receiptCustName').innerText = name;
+      document.getElementById('receiptTotal').innerText = formatRupiah(grandTotal);
+      document.getElementById('receiptOrderId').innerText = `NEXA-${Math.floor(1000 + Math.random() * 9000)}`;
+
+      // Clear cart
+      cart = [];
+      updateCartUI();
+    }
+
+    // Reset After Transaction
+    function resetApp() {
+      closeCheckoutModal();
+      document.getElementById('voucherInput').value = '';
+      discountRate = 0;
+      updateCartUI();
+    }
+
+    // Toast Function
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // Initialize on load
+    renderCategories();
+    renderProducts();
+    updateCartUI();
+  </script>
+</body>
+</html>

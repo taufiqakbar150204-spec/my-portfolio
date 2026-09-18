@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinSight – Multi-Asset Financial Analytics Engine</title>
+  <meta name="description" content="FinSight is a high-performance portfolio tracking and financial data visualization platform for crypto, US equities, and foreign exchange assets." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="fin-header">
+    <a href="#" class="brand-box">
+      <div class="brand-icon">📈</div>
+      <div class="brand-name">Fin<span class="gradient-title">Sight</span></div>
+    </a>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <span class="mono" style="font-size:0.75rem; color:#10b981; background:rgba(16,185,129,0.15); padding:4px 12px; border-radius:20px; border:1px solid rgba(16,185,129,0.3);">
+        🟢 Node-Cron Nightly Synced
+      </span>
+      <button class="btn btn-emerald" onclick="openAssetModal()">+ Add Asset</button>
+    </div>
+  </header>
+
+  <!-- Main Analytics Container -->
+  <div class="dashboard-container">
+    <!-- Executive Summary Metric Cards -->
+    <div class="metric-cards-grid">
+      <div class="metric-card">
+        <div class="metric-label">Total Net Portfolio Value</div>
+        <div class="metric-value gradient-title" id="netWorthVal">$151,135.50</div>
+        <div class="metric-delta delta-up">▲ +$4,210.80 (24h)</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Unrealized P&amp;L (Overall)</div>
+        <div class="metric-value" style="color:#10b981;">+$28,450.00</div>
+        <div class="metric-delta delta-up">▲ +23.18% Return</div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Cron Price Aggregation</div>
+        <div class="metric-value mono" style="font-size:1.2rem; color:#38bdf8;" id="cronStatus">Auto-Scheduled @ 00:00</div>
+        <div style="margin-top:6px;">
+          <button class="btn btn-dark" style="padding:4px 10px; font-size:0.7rem;" onclick="triggerCronAggregator()">
+            ⚡ Run Cron Manual Trigger
+          </button>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-label">Tax Compliance Audit</div>
+        <div class="metric-value" style="font-size:1.3rem; color:#f59e0b;">Ready</div>
+        <div style="margin-top:6px;">
+          <button class="btn btn-dark" style="padding:4px 10px; font-size:0.7rem;" onclick="exportTaxStatement()">
+            📥 Export Tax Audit (.JSON)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Workspace Grid -->
+    <div class="grid-main">
+      <!-- Left Panel: Live Asset Holdings Table -->
+      <div class="panel-box">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span>📊 Tracked Multi-Asset Holdings</span>
+          </div>
+          <span class="mono" style="font-size:0.8rem; color:#94a3b8;">Real-time Price Stream</span>
+        </div>
+
+        <table class="asset-table">
+          <thead>
+            <tr>
+              <th>Asset / Symbol</th>
+              <th>Unit Price</th>
+              <th>24h Change</th>
+              <th>Holdings</th>
+              <th>Total Value</th>
+            </tr>
+          </thead>
+          <tbody id="assetTableBody">
+            <!-- Injected by app.js -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Right Panel: Asset Allocation & System Health -->
+      <div>
+        <div class="panel-box">
+          <div class="panel-header">
+            <div class="panel-title">🎯 Asset Class Allocation</div>
+          </div>
+          <div class="allocation-item">
+            <div class="allocation-info">
+              <span style="color:#fff;">Cryptocurrency (BTC / ETH)</span>
+              <span class="mono" style="color:#10b981;">62%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 62%; background: linear-gradient(90deg, #10b981, #06b6d4);"></div>
+            </div>
+          </div>
+
+          <div class="allocation-item">
+            <div class="allocation-info">
+              <span style="color:#fff;">US Equities (NVDA / AAPL)</span>
+              <span class="mono" style="color:#38bdf8;">38%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill" style="width: 38%; background: linear-gradient(90deg, #38bdf8, #818cf8);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-box" style="border-color:var(--border-gold);">
+          <div class="panel-header">
+            <div class="panel-title" style="color:#f59e0b;">⚙️ Cron &amp; Database Architecture</div>
+          </div>
+          <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">
+            FinSight uses scheduled Node-Cron jobs to query external market exchange APIs, compute overnight gains/losses, and store history in PostgreSQL.
+          </p>
+          <div style="background:#06090e; padding:12px; border-radius:8px; border:1px solid var(--border-color);" class="mono">
+            <span style="color:#a855f7;">cron.schedule</span>('<span style="color:#f59e0b;">0 0 * * *</span>', () => {<br/>
+            &nbsp;&nbsp;aggregateMarketPrices();<br/>
+            });
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Asset Modal -->
+  <div class="modal-overlay" id="assetModal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:1.2rem; font-weight:700;">Add New Asset Position</h3>
+        <button onclick="closeAssetModal()" style="background:none; border:none; color:#94a3b8; font-size:1.4rem; cursor:pointer;">&times;</button>
+      </div>
+      <form id="assetForm">
+        <div class="form-field">
+          <label>Asset Name</label>
+          <input type="text" id="astName" class="input-ctrl" required placeholder="e.g. Solana" />
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-field">
+            <label>Ticker Symbol</label>
+            <input type="text" id="astSymbol" class="input-ctrl" required placeholder="SOL" />
+          </div>
+          <div class="form-field">
+            <label>Category</label>
+            <select id="astCat" class="input-ctrl" required>
+              <option value="Crypto">Crypto</option>
+              <option value="US Stocks">US Stocks</option>
+              <option value="Forex">Forex</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="form-field">
+            <label>Quantity Owned</label>
+            <input type="number" step="any" id="astQty" class="input-ctrl" required placeholder="15.0" />
+          </div>
+          <div class="form-field">
+            <label>Avg Buy Price ($)</label>
+            <input type="number" step="any" id="astPrice" class="input-ctrl" required placeholder="142.50" />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-emerald" style="width:100%; margin-top:10px;">
+          Save Position to Engine
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <footer style="border-top:1px solid var(--border-color); padding:30px 24px; text-align:center; color:var(--text-subtle); font-size:0.85rem;">
+    <p>© 2026 FinSight Engine. Built by <strong style="color:#fff;">Muhamad Taufiq Akbar</strong> • Multi-Asset Financial Platform Demo</p>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

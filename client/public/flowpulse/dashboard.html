@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Dashboard – FlowPulse</title>
+  <meta name="description" content="FlowPulse dashboard – overview of your team tasks, projects, and activity." />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="app-wrapper">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">⚡</div>
+        <span class="sidebar-brand-name gradient-text">FlowPulse</span>
+      </div>
+      <div class="sidebar-section-label">Main Menu</div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-nav-item active"><span class="nav-icon">📊</span> Dashboard</a>
+        <a href="board.html" class="sidebar-nav-item"><span class="nav-icon">📋</span> Kanban Board <span
+            class="sidebar-nav-badge">5</span></a>
+        <a href="projects.html" class="sidebar-nav-item"><span class="nav-icon">📁</span> Projects</a>
+        <a href="team.html" class="sidebar-nav-item"><span class="nav-icon">👥</span> Team</a>
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">📅</span> Calendar</a>
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">💬</span> Messages <span
+            class="sidebar-nav-badge">3</span></a>
+      </nav>
+      <div class="sidebar-section-label">Settings</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-nav-item"><span class="nav-icon">⚙️</span> Settings</a>
+        <a href="index.html" class="sidebar-nav-item"><span class="nav-icon">🏠</span> Landing Page</a>
+        <a href="auth.html" class="sidebar-nav-item"><span class="nav-icon">🚪</span> Logout</a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user-avatar">YO</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Yoga Oktavian</div>
+          <div class="sidebar-user-role">Product Manager</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Sidebar toggle mobile -->
+    <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
+    <!-- Topbar -->
+    <header class="app-topbar">
+      <div class="topbar-left">
+        <div class="topbar-title">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-search">
+          <span>🔍</span>
+          <input type="text" id="topbarSearch" placeholder="Search tasks, projects..." />
+        </div>
+        <div class="notification-btn" style="position:relative">
+          <button class="btn-icon" id="notifBell">🔔</button>
+          <div class="notification-dot"></div>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-header"><span class="notif-title">Notifications</span><span
+                class="badge badge-red">3</span></div>
+            <div class="notif-item">
+              <div class="notif-icon" style="background:rgba(108,99,255,0.15)">📋</div>
+              <div>
+                <div class="notif-text"><strong>Rina</strong> assigned you a new task: <em>UI Redesign Homepage</em>
+                </div>
+                <div class="notif-time">2 minutes ago</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon" style="background:rgba(0,212,170,0.15)">✅</div>
+              <div>
+                <div class="notif-text"><strong>Project Alpha</strong> milestone reached – 75% complete!</div>
+                <div class="notif-time">1 hour ago</div>
+              </div>
+            </div>
+            <div class="notif-item">
+              <div class="notif-icon" style="background:rgba(255,77,109,0.15)">⚠️</div>
+              <div>
+                <div class="notif-text">Task <em>API Integration</em> is overdue by 2 days</div>
+                <div class="notif-time">3 hours ago</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar-user-avatar" style="cursor:pointer">YO</div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="app-main">
+
+      <!-- Welcome -->
+      <div
+        style="margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <div>
+          <h2 style="font-size:24px;font-weight:800;margin-bottom:4px">Good evening, Yoga 👋</h2>
+          <p style="color:var(--text-secondary);font-size:14px">Here's what's happening with your team today.</p>
+        </div>
+        <a href="board.html" class="btn btn-primary">+ Add Task</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card purple">
+          <div class="stat-icon">📋</div>
+          <div class="stat-value gradient-text">142</div>
+          <div class="stat-label">Total Tasks</div>
+          <div class="stat-change">↑ 12 from last week</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">🔄</div>
+          <div class="stat-value gradient-text-green">38</div>
+          <div class="stat-label">In Progress</div>
+          <div class="stat-change">↑ 5 active now</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-icon">✅</div>
+          <div class="stat-value" style="color:var(--accent-info)">91</div>
+          <div class="stat-label">Completed</div>
+          <div class="stat-change">↑ 8 this week</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-value" style="color:var(--accent-danger)">13</div>
+          <div class="stat-label">Overdue</div>
+          <div class="stat-change down">↑ 3 need attention</div>
+        </div>
+      </div>
+
+      <!-- Main grid -->
+      <div class="grid-2" style="margin-bottom:24px">
+
+        <!-- Weekly chart -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Weekly Progress</div>
+              <div class="card-subtitle">Tasks completed per day</div>
+            </div>
+            <span class="badge badge-green">This Week</span>
+          </div>
+          <div class="chart-container" style="height:180px">
+            <canvas id="weeklyChart" style="width:100%;height:100%"></canvas>
+          </div>
+        </div>
+
+        <!-- Recent activity -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Recent Activity</div>
+              <div class="card-subtitle">What's happening now</div>
+            </div>
+            <a href="#" style="font-size:13px;color:var(--accent-primary)">View all</a>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-primary)"></div>
+            <div>
+              <div class="activity-text"><strong>Rina Dewi</strong> completed <em>Design System Update</em></div>
+              <div class="activity-time">5 minutes ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-secondary)"></div>
+            <div>
+              <div class="activity-text"><strong>Budi</strong> moved <em>Backend API</em> to Review</div>
+              <div class="activity-time">23 minutes ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-warning)"></div>
+            <div>
+              <div class="activity-text"><strong>Sinta</strong> added comment on <em>User Research</em></div>
+              <div class="activity-time">1 hour ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-danger)"></div>
+            <div>
+              <div class="activity-text"><strong>Yoga</strong> created project <em>Mobile App v2</em></div>
+              <div class="activity-time">2 hours ago</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-dot" style="background:var(--accent-info)"></div>
+            <div>
+              <div class="activity-text"><strong>Dito</strong> invited <strong>3 new members</strong> to the workspace
+              </div>
+              <div class="activity-time">3 hours ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects & Tasks row -->
+      <div class="grid-2">
+        <!-- Active Projects -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Active Projects</div>
+              <div class="card-subtitle">5 of 8 projects in progress</div>
+            </div>
+            <a href="projects.html" class="btn btn-ghost btn-sm">View All</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div>
+              <div class="project-progress-label"><span>🚀 FlowPulse Mobile App</span><span>72%</span></div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" data-width="72%" style="width:72%;background:var(--gradient-primary)">
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+                <div class="avatar-group">
+                  <div class="avatar">YO</div>
+                  <div class="avatar bg-green">RD</div>
+                  <div class="avatar bg-pink">BS</div>
+                </div>
+                <span class="badge badge-green">On Track</span>
+              </div>
+            </div>
+            <div>
+              <div class="project-progress-label"><span>🎨 Design System v3</span><span>45%</span></div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" data-width="45%"
+                  style="width:45%;background:linear-gradient(135deg,#00d4aa,#4db8ff)"></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+                <div class="avatar-group">
+                  <div class="avatar bg-blue">SA</div>
+                  <div class="avatar bg-orange">DP</div>
+                </div>
+                <span class="badge badge-orange">At Risk</span>
+              </div>
+            </div>
+            <div>
+              <div class="project-progress-label"><span>🔧 Backend API v2</span><span>88%</span></div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" data-width="88%"
+                  style="width:88%;background:linear-gradient(135deg,#6c63ff,#4db8ff)"></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+                <div class="avatar-group">
+                  <div class="avatar bg-teal">BP</div>
+                  <div class="avatar">DH</div>
+                </div>
+                <span class="badge badge-green">Almost Done</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Tasks -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">My Tasks</div>
+              <div class="card-subtitle">Assigned to you</div>
+            </div>
+            <a href="board.html" class="btn btn-ghost btn-sm">Open Board</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border)">
+              <input type="checkbox" id="task1"
+                style="accent-color:var(--accent-primary);cursor:pointer;width:16px;height:16px" />
+              <label for="task1" style="flex:1;font-size:13px;cursor:pointer">UI Redesign Homepage</label>
+              <span class="badge badge-red">High</span>
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border)">
+              <input type="checkbox" id="task2"
+                style="accent-color:var(--accent-primary);cursor:pointer;width:16px;height:16px" />
+              <label for="task2" style="flex:1;font-size:13px;cursor:pointer">Write API Documentation</label>
+              <span class="badge badge-orange">Medium</span>
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border)">
+              <input type="checkbox" id="task3" checked
+                style="accent-color:var(--accent-primary);cursor:pointer;width:16px;height:16px" />
+              <label for="task3"
+                style="flex:1;font-size:13px;cursor:pointer;text-decoration:line-through;color:var(--text-muted)">Setup
+                CI/CD Pipeline</label>
+              <span class="badge badge-green">Done</span>
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border)">
+              <input type="checkbox" id="task4"
+                style="accent-color:var(--accent-primary);cursor:pointer;width:16px;height:16px" />
+              <label for="task4" style="flex:1;font-size:13px;cursor:pointer">User Testing Report</label>
+              <span class="badge badge-blue">Low</span>
+            </div>
+            <div
+              style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-secondary);border-radius:var(--radius-sm);border:1px solid var(--border)">
+              <input type="checkbox" id="task5"
+                style="accent-color:var(--accent-primary);cursor:pointer;width:16px;height:16px" />
+              <label for="task5" style="flex:1;font-size:13px;cursor:pointer">Sprint Retrospective Prep</label>
+              <span class="badge badge-orange">Medium</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="./js/app.js"></script>
+  <script>
+    document.getElementById('sidebarToggle')?.addEventListener('click', () => {
+      document.getElementById('sidebar')?.classList.toggle('open');
+    });
+    document.getElementById('notifBell')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.getElementById('notifDropdown')?.classList.toggle('open');
+    });
+    document.addEventListener('click', () => document.getElementById('notifDropdown')?.classList.remove('open'));
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', function () {
+        const label = this.nextElementSibling;
+        if (label) {
+          label.style.textDecoration = this.checked ? 'line-through' : '';
+          label.style.color = this.checked ? 'var(--text-muted)' : '';
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

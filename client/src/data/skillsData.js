@@ -1,0 +1,55 @@
+export const skillCategories = [
+  {
+    id: "frontend",
+    title: "Frontend Development",
+    description: "Building responsive, modern, and accessible client-side user interfaces with component-driven architecture.",
+    color: "from-emerald-500 to-teal-500",
+    skills: [
+      { name: "HTML5", level: "Advanced", experience: "Semantics & SEO" },
+      { name: "CSS3", level: "Advanced", experience: "Flexbox, Grid, Animations" },
+      { name: "JavaScript (ES6+)", level: "Advanced", experience: "Async/Await, DOM, Closures" },
+      { name: "React.js", level: "Advanced", experience: "Hooks, Context API, Redux" },
+      { name: "Tailwind CSS", level: "Advanced", experience: "Utility-first, Custom Themes" },
+      { name: "TypeScript", level: "Intermediate", experience: "Type Safety, Interfaces" },
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend & API Architecture",
+    description: "Designing scalable server-side systems, RESTful microservices, and secure authentication pipelines.",
+    color: "from-cyan-500 to-blue-500",
+    skills: [
+      { name: "Node.js", level: "Advanced", experience: "Event-driven, Async I/O" },
+      { name: "Express.js", level: "Advanced", experience: "Routing, Middleware, APIs" },
+      { name: "RESTful API", level: "Advanced", experience: "HTTP Standards, Swagger/OpenAPI" },
+      { name: "JWT & OAuth", level: "Advanced", experience: "Authentication & Authorization" },
+      { name: "Microservices", level: "Intermediate", experience: "Modular Service Architecture" },
+    ],
+  },
+  {
+    id: "database",
+    title: "Database & Storage",
+    description: "Modeling relational and document-based data structures with query optimization and integrity constraints.",
+    color: "from-emerald-400 to-cyan-400",
+    skills: [
+      { name: "PostgreSQL", level: "Advanced", experience: "Complex Queries, Indexes, Prisma" },
+      { name: "MySQL", level: "Advanced", experience: "Relational Design, Transactions" },
+      { name: "MongoDB", level: "Intermediate", experience: "Aggregation, Mongoose Schemas" },
+      { name: "Redis", level: "Intermediate", experience: "In-Memory Caching & Sessions" },
+    ],
+  },
+  {
+    id: "tools",
+    title: "Tools, DevOps & Deployment",
+    description: "Maintaining automated CI/CD workflows, version control discipline, and cloud hosting infrastructure.",
+    color: "from-teal-400 to-emerald-400",
+    skills: [
+      { name: "Git & GitHub", level: "Advanced", experience: "Branching, PRs, Code Reviews" },
+      { name: "Postman", level: "Advanced", experience: "API Testing & Documentation" },
+      { name: "Docker", level: "Intermediate", experience: "Containerization, Multi-stage builds" },
+      { name: "Vercel", level: "Advanced", experience: "Frontend Deployment & Edge Functions" },
+      { name: "Render / VPS", level: "Intermediate", experience: "Backend Hosting & Process Monitoring" },
+      { name: "Linux / Bash", level: "Intermediate", experience: "Server Administration, Shell Scripting" },
+    ],
+  },
+];

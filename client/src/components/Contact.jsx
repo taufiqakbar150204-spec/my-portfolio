@@ -26,7 +26,7 @@ const Contact = () => {
 
     try {
       // Send message to Express.js backend endpoint
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://my-portfolio-production-f282.up.railway.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
